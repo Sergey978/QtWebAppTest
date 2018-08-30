@@ -56,6 +56,10 @@ void RequestMapper::service(HttpRequest& request, HttpResponse& response) {
     else if (path=="/list2") {
         dataTemplateController.service(request, response);
     }
+    else if (path=="/bootstrap") {
+      bootstrapController.service(request, response);
+    }
+
     else if (path.startsWith("/files")) {
         staticFileController->service(request,response);
     }

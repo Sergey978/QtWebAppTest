@@ -4,7 +4,7 @@ QT  += network
 
 TARGET = MyFirstWebApp
 
-CONFIG   += console
+CONFIG   += console c++14
 
 TEMPLATE = app
 
@@ -17,7 +17,9 @@ SOURCES += src/main.cpp \
     src/datatemplatecontroller.cpp \
     src/startup.cpp \
     src/admincontroller.cpp \   
-    src/logout.cpp
+    src/logout.cpp \
+    src/sqlite/sqlite3.c \
+    src/bootstraptemplate.cpp
 
 
 
@@ -32,7 +34,9 @@ HEADERS += \
     src/startup.h \
     src/admincontroller.h \
     src/logout.h \
-    ../sqlite_orm-master/include/sqlite_orm/sqlite_orm.h
+    src/sqlite/sqlite3.h \
+    src/sqlite_orm/sqlite_orm.h \
+    src/bootstraptemplate.h
 
 
 

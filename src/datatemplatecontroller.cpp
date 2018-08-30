@@ -1,5 +1,5 @@
-#include "requestmapper.h"
 #include "datatemplatecontroller.h"
+#include "requestmapper.h"
 #include "template.h"
 
 DataTemplateController::DataTemplateController(QObject* parent)

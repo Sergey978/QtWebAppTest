@@ -14,6 +14,7 @@
 #include "admincontroller.h"
 #include"logout.h"
 #include "staticfilecontroller.h"
+#include"bootstraptemplate.h"
 
 using namespace stefanfrings;
 
@@ -34,6 +35,7 @@ private:
     CookieTestController cookieTestController;
     DataTemplateController dataTemplateController;
     AdminController adminController;
+    BootstrapTemplateController bootstrapController;
     LogOut logoutController;
 };
 
