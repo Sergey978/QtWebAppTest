@@ -18,6 +18,11 @@ void RequestMapper::service(HttpRequest& request, HttpResponse& response) {
     QString username=session.get("username").toString();
     logger->set("currentUser",username);
 
+// example from another project  http://www.itlessons.info/php/routing-library/
+ //    d.add(r:regex == "/hello/calc/{a:\d+}/{b:\d+}" && r::method == «GET» && r::get(«method») = «add», [](int a, int b) { return a + b; });
+//    d.add(r:regex == "/hello/calc/{a:\d+}/{b:\d+}" && r::method == «GET» && r::get(«method») = «minus», [](int a, int b) { return a — b; });
+
+
 
 
     QByteArray sessionId=sessionStore->getSessionId(request,response);
@@ -28,6 +33,7 @@ void RequestMapper::service(HttpRequest& request, HttpResponse& response) {
         return;
     }
     */
+
 
     if (path=="/" || path=="/hello") {
         helloWorldController.service(request, response);

@@ -24,7 +24,7 @@ void BootstrapTemplateController::service(HttpRequest &request, HttpResponse &re
 
     response.setHeader("Content-Type", "text/html; charset=UTF-8");
 
-    Template t=RequestMapper::templateCache->getTemplate("listdata",language);
+    Template t=RequestMapper::templateCache->getTemplate("experiment",language);
     t.setVariable("name",username);
     t.setCondition("logged-in",!username.isEmpty());
     t.loop("row",list.size());
