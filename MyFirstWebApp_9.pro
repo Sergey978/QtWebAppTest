@@ -20,7 +20,8 @@ SOURCES += src/main.cpp \
     src/logout.cpp \
     src/sqlite/sqlite3.c \
     src/bootstraptemplate.cpp \
-    src/urlmatcher.cpp
+    src/urlmatcher.cpp \
+    src/urlparams.cpp
 
 
 
@@ -38,7 +39,9 @@ HEADERS += \
     src/sqlite/sqlite3.h \
     src/sqlite_orm/sqlite_orm.h \
     src/bootstraptemplate.h \
-    src/urlmatcher.h
+    src/urlmatcher.h \
+    src/urlparams.h \
+    src/fnptr.h
 
 
 

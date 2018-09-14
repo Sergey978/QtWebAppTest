@@ -9,6 +9,7 @@ Logger* RequestMapper::logger=0;
 RequestMapper::RequestMapper(QObject* parent)
     : HttpRequestHandler(parent) {
     // empty
+  //  matcher.regController("GET", "home/about", [&](){});
 }
 
 void RequestMapper::service(HttpRequest& request, HttpResponse& response) {
@@ -17,6 +18,10 @@ void RequestMapper::service(HttpRequest& request, HttpResponse& response) {
     HttpSession session=sessionStore->getSession(request,response,false);
     QString username=session.get("username").toString();
     logger->set("currentUser",username);
+
+
+
+   // matcher->regController("GET", "home/about", [&](int a, int b ){helloWorldController.service(request, response);});
 
 // example from another project  http://www.itlessons.info/php/routing-library/
  //    d.add(r:regex == "/hello/calc/{a:\d+}/{b:\d+}" && r::method == «GET» && r::get(«method») = «add», [](int a, int b) { return a + b; });
@@ -35,9 +40,14 @@ void RequestMapper::service(HttpRequest& request, HttpResponse& response) {
     */
 
 
-    if (path=="/" || path=="/hello") {
-        helloWorldController.service(request, response);
-    }
+//    if (path=="/" || path=="/hello") {
+//        helloWorldController.service(request, response);
+//    }
+
+    if (false) {
+          helloWorldController.service(request, response);
+      }
+
     else if (path=="/list") {
         listDataController.service(request, response);
     }

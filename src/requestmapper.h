@@ -15,6 +15,7 @@
 #include"logout.h"
 #include "staticfilecontroller.h"
 #include"bootstraptemplate.h"
+#include "urlmatcher.h"
 
 using namespace stefanfrings;
 
@@ -28,6 +29,7 @@ public:
     static TemplateCache* templateCache;
     static Logger* logger;
 
+
 private:
     HelloWorldController helloWorldController;
     ListDataController listDataController;
@@ -37,6 +39,7 @@ private:
     AdminController adminController;
     BootstrapTemplateController bootstrapController;
     LogOut logoutController;
+    UrlMatcher  matcher;
 };
 
 #endif // REQUESTMAPPER_H

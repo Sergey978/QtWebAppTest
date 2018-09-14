@@ -4,16 +4,23 @@
 #include <vector>
 #include <iostream>
 #include<map>
+#include"fnptr.h"
+#include "urlparams.h"
+
 
 class UrlMatcher
 {
 public:
     UrlMatcher();
     void addPattern(const std::string name, const std::string pattern );
-    void regMethod(const std::string method,
-                   const std::string route, const std::string controller);
 
-    void convertRoute(const std::string route);
+
+    //registrtion Controllers
+    // example : regController("GET|POST", "user/edit/(id:num)",
+    //                     fnptr<void(UrlParams)>[&](UrlParams p){UserController.edit(p.num("id"))});
+    void regController(const std::string method, const std::string route, void(*fn)(UrlParams));
+
+    std::string convertRoute(const std::string route);
     void replaceRoute(const std::string match);
 
     /**
@@ -21,21 +28,30 @@ public:
          * @param $uri
          * @return MatchedRoute
          */
-   void  match(const std::string method,  )
+    void  match(const std::string method  );
 
 private:
-    std::vector<std::string> methods= {"GET", "POST"};
-    std::map<std::string, std::vector<std::string>> routes =
+    std::vector<std::string> methods=
     {
-        {"GET", {""}},
-        {"POST", {""}}
+        "GET",
+        "POST"
     };
+    std::map<std::string, std::vector<void(*)(UrlParams)>> routes =
+    {
+    {"GET", {}},
+    {"POST", {}}
+};
+
     std::map <std::string, std::string> patterns =
     {
-       { "num","[0-9]+"},
-       { "str" , "[a-zA-Z\.\-_%]+"},
-       {"any" , "[a-zA-Z0-9\.\-_%]+"}
+        { "num","[0-9]+"},
+        { "str" , "[a-zA-Z\.\-_%]+"},
+        {"any" , "[a-zA-Z0-9\.\-_%]+"}
     };
+
+    std::string getPatternByName(const std::string  &name);
+
+    std::vector<std::string> split(const std::string& str, const std::string& delim);
 
 };
 
