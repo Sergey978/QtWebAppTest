@@ -1,58 +1,35 @@
 #ifndef URLMATCHER_H
 #define URLMATCHER_H
 
-#include <vector>
-#include <iostream>
-#include<map>
+#include <QMultiMap>
+#include<QVector>
+#include<QString>
 #include"fnptr.h"
 #include "urlparams.h"
-
+#include"route.h"
 
 class UrlMatcher
 {
 public:
     UrlMatcher();
-    void addPattern(const std::string name, const std::string pattern );
 
-
-    //registrtion Controllers
+    //registration Controllers
     // example : regController("GET|POST", "user/edit/(id:num)",
-    //                     fnptr<void(UrlParams)>[&](UrlParams p){UserController.edit(p.num("id"))});
-    void regController(const std::string method, const std::string route, void(*fn)(UrlParams));
+    //                     fnptr<void(UrlParams)>[&](UrlParams p){UserController.edit(p.Num("id"))});
+    void regController(const QString method, const std::string route, void(*fn)(UrlParams));
 
-    std::string convertRoute(const std::string route);
-    void replaceRoute(const std::string match);
-
-    /**
-         * @param $method
-         * @param $uri
-         * @return MatchedRoute
-         */
-    void  match(const std::string method  );
+    Route  match( const QString &method, const std::string & url);
+    void execRoute(const Route, UrlParams &params );
 
 private:
-    std::vector<std::string> methods=
+    QStringList methods=
     {
         "GET",
         "POST"
     };
-    std::map<std::string, std::vector<void(*)(UrlParams)>> routes =
-    {
-    {"GET", {}},
-    {"POST", {}}
-};
 
-    std::map <std::string, std::string> patterns =
-    {
-        { "num","[0-9]+"},
-        { "str" , "[a-zA-Z\.\-_%]+"},
-        {"any" , "[a-zA-Z0-9\.\-_%]+"}
-    };
-
-    std::string getPatternByName(const std::string  &name);
-
-    std::vector<std::string> split(const std::string& str, const std::string& delim);
-
+    QMap<Route, void(*)(UrlParams)> routes ;
+    UrlParams params;
 };
 
 #endif // URLMATCHER_H

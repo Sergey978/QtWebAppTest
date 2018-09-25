@@ -21,7 +21,8 @@ SOURCES += src/main.cpp \
     src/sqlite/sqlite3.c \
     src/bootstraptemplate.cpp \
     src/urlmatcher.cpp \
-    src/urlparams.cpp
+    src/urlparams.cpp \
+    src/route.cpp
 
 
 
@@ -41,7 +42,8 @@ HEADERS += \
     src/bootstraptemplate.h \
     src/urlmatcher.h \
     src/urlparams.h \
-    src/fnptr.h
+    src/fnptr.h \
+    src/route.h
 
 
 

@@ -1,18 +1,19 @@
 #ifndef URLPARAMS_H
 #define URLPARAMS_H
-# include <map>
+# include <QMap>
+#include<QString>
 
 class UrlParams
 {
 public:
     UrlParams();
-    void setStr(const std::string key, const std::string value);
-    void setNum(const std::string key, const int value);
-    std::string Str(std::string key);
-    int  Num(std::string key);
+    void setStr(const QString key, const QString value);
+    void setNum(const QString key, const int value);
+    QString Str(QString key) noexcept(false);
+    int  Num(QString key) noexcept(false);
 private:
-     std::map<std::string, std::string> str;
-    std::map<std::string, int> nums;
+    QMap<QString, QString> str;
+    QMap<QString, int> nums;
 };
 
 #endif // URLPARAMS_H

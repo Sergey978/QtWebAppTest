@@ -1,37 +1,42 @@
 #include "urlparams.h"
-#include <map>
 
 UrlParams::UrlParams()
 {
 
 }
 
-void UrlParams::setStr(const std::string key, const std::string value)
+void UrlParams::setStr(const QString key, const QString value)
 {
-    str.emplace(key, value);
+    str.insert(key, value);
 }
 
-void UrlParams::setNum(const std::string key, const int value)
+void UrlParams::setNum(const QString key, const int value)
 {
-    nums.emplace(key, value);
+    nums.insert(key, value);
 }
 
-std::string UrlParams::Str(std::string key)
+QString UrlParams::Str(const QString key) noexcept(false)
 {
-    auto it = str.find(key);
-    if (it != str.end())
-      return  it->second;
-    else
-      /* not found ... */;
-    return "";
+
+    if (str.contains(key))
+    {
+         return str[key];
+    }
+   else
+    {
+        throw std::runtime_error("Str key not found");
+    }
 }
 
-int UrlParams::Num(std::string key)
+int UrlParams::Num(const QString key) noexcept(false)
 {
-    auto it = nums.find(key);
-    if (it != nums.end())
-      return  it->second;
-    else
-      /* not found ... */;
-    return 0;
+    if (nums.contains(key))
+    {
+         return nums[key];
+    }
+   else
+    {
+        throw std::runtime_error("Nums key not found");
+    }
+
 }
