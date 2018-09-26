@@ -1,24 +1,18 @@
 #include "route.h"
 
 
-Route::Route()
+Route::Route(const std::string & route)
 {
-
+    setRoute(route);
 }
 
-void Route::setRoute(const std::string & route, const QStringList & methods)
+void Route::setRoute(const std::string & route)
 {
+    stringRoute = QString::fromStdString(route);
     _setRoute(route);
-    this->methods = methods;
 
 }
 
-void Route::setRoute(const std::string &route, QString method)
-{
-     _setRoute(route);
-     methods.append(method);
-
-}
 
 bool Route::urlMatch(const std::string & url, const QString & method, UrlParams & params )
 {
@@ -80,9 +74,33 @@ QStringList Route::getSplittedRoute()
     return splittedRoute;
 }
 
+QString Route::extractMethods(const QString &route)
+{
+
+    QStringList _splitted =  route.split(";");
+
+
+    QString _methods =  _splitted[0].toUpper();
+
+
+    if(   _methods.contains('|'))
+    {
+        methods = _methods.split("|");
+    }
+
+    if(_methods == "*")
+    {
+        methods = this->methodList;
+    }
+
+    return _splitted[2];
+}
+
 void Route::_setRoute(const std::string &route)
 {
     QString _route = QString::fromStdString(route);
+
+    _route = extractMethods(_route);
     splittedRoute = _route.split("/");
 
     QRegExp _rx("\\((\\w+):(\\w+)\\)");

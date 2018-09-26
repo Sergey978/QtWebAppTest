@@ -14,21 +14,17 @@ public:
     UrlMatcher();
 
     //registration Controllers
-    // example : regController("GET|POST", "user/edit/(id:num)",
-    //                     fnptr<void(UrlParams)>[&](UrlParams p){UserController.edit(p.Num("id"))});
-    void regController(const QString method, const std::string route, void(*fn)(UrlParams));
+    //  example:regController("GET|POST;user/edit/(id:num)",
+    //  fnptr<void(UrlParams)>[&](UrlParams p){UserController.edit(p.Num("id"))});
+    void regController(const std::string route, void(*fn)(UrlParams));
 
-    Route  match( const QString &method, const std::string & url);
+    Route * match( const QString &method, const std::string & url);
     void execRoute(const Route, UrlParams &params );
 
 private:
-    QStringList methods=
-    {
-        "GET",
-        "POST"
-    };
 
-    QMap<Route, void(*)(UrlParams)> routes ;
+
+    QMap<Route *, void(*)(UrlParams)> routes ;
     UrlParams params;
 };
 

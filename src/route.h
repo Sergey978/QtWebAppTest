@@ -10,17 +10,24 @@
 class Route
 {
 public:
-    Route();
-    void setRoute(const  std::string & route, const QStringList & methods );
-    void setRoute(const  std::string & route, QString method );
+    Route(const std::string & route);
+    void setRoute(const  std::string & route );
     bool urlMatch(const std::string & url, const QString & method,  UrlParams & params) ;
     QStringList getSplittedRoute() ;
 
 private:
+    QString stringRoute;
     QStringList  splittedRoute;
     QStringList splittedUrl;
     QStringList methods;
+    QString extractMethods(const QString & route) ;
     void _setRoute(const  std::string & route);
+
+    QStringList methodList =
+    {
+        "GET",
+        "POST"
+    };
 
     QMap<QString, QString> patterns =
     {{"num" , "[0-9]+"},
