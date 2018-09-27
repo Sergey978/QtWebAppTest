@@ -1,13 +1,14 @@
 #ifndef URLMATCHER_H
 #define URLMATCHER_H
 
-#include <QMultiMap>
-#include<QVector>
+#include <QMap>
 #include<QString>
 #include"fnptr.h"
 #include "urlparams.h"
 #include"route.h"
+#include "httprequesthandler.h"
 
+using namespace stefanfrings;
 class UrlMatcher
 {
 public:
@@ -19,12 +20,12 @@ public:
     void regController(const std::string route, void(*fn)(UrlParams));
 
     Route * match( const QString &method, const std::string & url);
-    void execRoute(const Route, UrlParams &params );
+    void execRoute( Route *key , UrlParams &params, HttpRequest & req, HttpResponse &resp );
 
 private:
 
 
-    QMap<Route *, void(*)(UrlParams)> routes ;
+   QMap <Route * , void(*)(UrlParams)> routes ;
     UrlParams params;
 };
 

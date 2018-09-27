@@ -8,7 +8,9 @@ using namespace stefanfrings;
 class AdminController: public HttpRequestHandler {
     Q_OBJECT
 public:
-    AdminController(QObject* parent=0);
+    AdminController(HttpRequestHandler &par, QObject* parent=0);
     void service(HttpRequest& request, HttpResponse& response);
+    void user( int id );
+
 };
 #endif // ADMINCONTROLLER_H

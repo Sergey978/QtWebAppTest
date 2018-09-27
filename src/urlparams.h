@@ -2,7 +2,9 @@
 #define URLPARAMS_H
 # include <QMap>
 #include<QString>
+#include"httprequesthandler.h"
 
+using namespace stefanfrings;
 class UrlParams
 {
 public:
@@ -11,6 +13,8 @@ public:
     void setNum(const QString key, const int value);
     QString Str(QString key) noexcept(false);
     int  Num(QString key) noexcept(false);
+    HttpRequest *request;
+    HttpResponse *response;
 private:
     QMap<QString, QString> str;
     QMap<QString, int> nums;

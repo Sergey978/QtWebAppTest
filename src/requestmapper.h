@@ -29,6 +29,10 @@ public:
     static TemplateCache* templateCache;
     static Logger* logger;
 
+protected:
+    HttpRequest  *request;
+    HttpResponse *response;
+
 
 private:
     HelloWorldController helloWorldController;

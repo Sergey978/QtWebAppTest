@@ -22,7 +22,9 @@ SOURCES += src/main.cpp \
     src/bootstraptemplate.cpp \
     src/urlmatcher.cpp \
     src/urlparams.cpp \
-    src/route.cpp
+    src/route.cpp \
+    controller.cpp \
+    src/controller.cpp
 
 
 
@@ -43,7 +45,9 @@ HEADERS += \
     src/urlmatcher.h \
     src/urlparams.h \
     src/fnptr.h \
-    src/route.h
+    src/route.h \
+    controller.h \
+    src/controller.h
 
 
 

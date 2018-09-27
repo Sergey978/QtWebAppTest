@@ -9,7 +9,12 @@ Logger* RequestMapper::logger=0;
 RequestMapper::RequestMapper(QObject* parent)
     : HttpRequestHandler(parent) {
     // empty
-  //  matcher.regController("GET", "home/about", [&](){});
+  //  matcher.regController("GET;home/about", [&](){});
+
+    //registration Controllers
+    //  example:regController("GET|POST;user/edit/(id:num)",
+    //  fnptr<void(UrlParams)>[&](UrlParams p){UserController.edit(p.Num("id"))});
+
 }
 
 void RequestMapper::service(HttpRequest& request, HttpResponse& response) {
@@ -18,15 +23,8 @@ void RequestMapper::service(HttpRequest& request, HttpResponse& response) {
     HttpSession session=sessionStore->getSession(request,response,false);
     QString username=session.get("username").toString();
     logger->set("currentUser",username);
-
-
-
-   // matcher->regController("GET", "home/about", [&](int a, int b ){helloWorldController.service(request, response);});
-
-// example from another project  http://www.itlessons.info/php/routing-library/
- //    d.add(r:regex == "/hello/calc/{a:\d+}/{b:\d+}" && r::method == «GET» && r::get(«method») = «add», [](int a, int b) { return a + b; });
-//    d.add(r:regex == "/hello/calc/{a:\d+}/{b:\d+}" && r::method == «GET» && r::get(«method») = «minus», [](int a, int b) { return a — b; });
-
+    this->request = &request;
+    this->response = &response;
 
 
 

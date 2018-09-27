@@ -20,7 +20,7 @@ private:
     QStringList  splittedRoute;
     QStringList splittedUrl;
     QStringList methods;
-    QString extractMethods(const QString & route) ;
+    QString extractMethods(const QString & route) noexcept(false);
     void _setRoute(const  std::string & route);
 
     QStringList methodList =

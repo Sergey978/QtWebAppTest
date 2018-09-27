@@ -82,6 +82,7 @@ QString Route::extractMethods(const QString &route)
 
     QString _methods =  _splitted[0].toUpper();
 
+    methods.append(_methods);
 
     if(   _methods.contains('|'))
     {
@@ -92,8 +93,16 @@ QString Route::extractMethods(const QString &route)
     {
         methods = this->methodList;
     }
+    for (QString &_meth : methods)
+    {
+        _meth = _meth.trimmed();
+        if (!methodList.contains(_meth))
+        {
+            throw std::runtime_error("bad method in teplate!");
+        }
+    }
 
-    return _splitted[2];
+    return _splitted[2].trimmed();
 }
 
 void Route::_setRoute(const std::string &route)
