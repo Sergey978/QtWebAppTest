@@ -102,7 +102,7 @@ QString Route::extractMethods(const QString &route)
         }
     }
 
-    return _splitted[2].trimmed();
+    return _splitted[1].trimmed();
 }
 
 void Route::_setRoute(const std::string &route)

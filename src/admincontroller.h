@@ -5,12 +5,14 @@
 
 using namespace stefanfrings;
 
-class AdminController: public HttpRequestHandler {
-    Q_OBJECT
+class AdminController {
+
 public:
-    AdminController(HttpRequestHandler &par, QObject* parent=0);
-    void service(HttpRequest& request, HttpResponse& response);
-    void user( int id );
+    AdminController( HttpRequestHandler & handler);
+    void service();
+    void user();
+private:
+    HttpRequestHandler * handler;
 
 };
 #endif // ADMINCONTROLLER_H

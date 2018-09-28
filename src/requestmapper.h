@@ -28,10 +28,9 @@ public:
     static StaticFileController* staticFileController;
     static TemplateCache* templateCache;
     static Logger* logger;
+    HttpRequest * getHttpRequest();
+    HttpResponse * getHttpResponse();
 
-protected:
-    HttpRequest  *request;
-    HttpResponse *response;
 
 
 private:
@@ -40,10 +39,12 @@ private:
     LoginController loginController;
     CookieTestController cookieTestController;
     DataTemplateController dataTemplateController;
-    AdminController adminController;
+    AdminController adminController = AdminController(*this);
     BootstrapTemplateController bootstrapController;
     LogOut logoutController;
     UrlMatcher  matcher;
+    HttpRequest * req;
+    HttpResponse * res;
 };
 
 #endif // REQUESTMAPPER_H

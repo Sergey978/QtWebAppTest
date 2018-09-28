@@ -23,10 +23,9 @@ Route * UrlMatcher::match( const QString &method, const std::string & url)
     return  nullptr;
 }
 
-void UrlMatcher::execRoute( Route  *key, UrlParams &params, HttpRequest & req, HttpResponse &resp)
+void UrlMatcher::execRoute( Route  *key)
 {
-    params.request = &req;
-    params.response = &resp;
+
 routes.value(key)(params);
 }
 

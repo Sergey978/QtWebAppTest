@@ -1,25 +1,27 @@
 #include "admincontroller.h"
 #include "sqlite_orm/sqlite_orm.h"
+#include "requestmapper.h"
 
 
 
-AdminController::AdminController( QObject *parent)
-    : HttpRequestHandler(parent)
+AdminController::AdminController( HttpRequestHandler & handler )
+
 {
-
+    this->handler = &handler;
 
 }
 
 
 
-void AdminController::service(HttpRequest &request, HttpResponse &response)
+void AdminController::service()
 {
 
 
-    response.write("Hello1 This is Admin Area",true);
+  //  response.write("Hello1 This is Admin Area",true);
 }
 
-void AdminController::user(int id)
+void AdminController::user()
 {
+
 
 }

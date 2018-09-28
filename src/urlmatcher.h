@@ -20,13 +20,12 @@ public:
     void regController(const std::string route, void(*fn)(UrlParams));
 
     Route * match( const QString &method, const std::string & url);
-    void execRoute( Route *key , UrlParams &params, HttpRequest & req, HttpResponse &resp );
+    void execRoute( Route *key );
 
 private:
-
-
+   UrlParams params;
    QMap <Route * , void(*)(UrlParams)> routes ;
-    UrlParams params;
+
 };
 
 #endif // URLMATCHER_H
