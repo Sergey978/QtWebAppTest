@@ -18,7 +18,7 @@ bool Route::urlMatch(const std::string & url, const QString & method, UrlParams 
 {
     QRegExp _rx;
     QString _url = QString::fromStdString(url);
-    splittedUrl   = _url.split("/");
+    splittedUrl   = _url.split("/", QString::SkipEmptyParts);
     if (!methods.contains(method))
     {
         return false;
@@ -77,7 +77,7 @@ QStringList Route::getSplittedRoute()
 QString Route::extractMethods(const QString &route)
 {
 
-    QStringList _splitted =  route.split(";");
+    QStringList _splitted =  route.split(";", QString::SkipEmptyParts);
 
 
     QString _methods =  _splitted[0].toUpper();
@@ -86,7 +86,7 @@ QString Route::extractMethods(const QString &route)
 
     if(   _methods.contains('|'))
     {
-        methods = _methods.split("|");
+        methods = _methods.split("|", QString::SkipEmptyParts);
     }
 
     if(_methods == "*")

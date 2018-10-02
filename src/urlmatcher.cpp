@@ -32,8 +32,8 @@ routes.value(key)(params);
 
 void UrlMatcher::regController(const std::string route , void(*fn)(UrlParams) )
 {    
-    Route _route(route);
-    routes.insert(&_route, fn);
+    Route * _route = new  Route(route);
+    routes.insert(_route, fn);
 }
 
 

@@ -16,6 +16,7 @@
 #include "staticfilecontroller.h"
 #include"bootstraptemplate.h"
 #include "urlmatcher.h"
+#include "controller.h"
 
 using namespace stefanfrings;
 
@@ -28,23 +29,22 @@ public:
     static StaticFileController* staticFileController;
     static TemplateCache* templateCache;
     static Logger* logger;
-    HttpRequest * getHttpRequest();
-    HttpResponse * getHttpResponse();
+
 
 
 
 private:
+    Controller contr;
     HelloWorldController helloWorldController;
     ListDataController listDataController;
     LoginController loginController;
     CookieTestController cookieTestController;
     DataTemplateController dataTemplateController;
-    AdminController adminController = AdminController(*this);
+    AdminController adminController = AdminController(&contr);
     BootstrapTemplateController bootstrapController;
     LogOut logoutController;
     UrlMatcher  matcher;
-    HttpRequest * req;
-    HttpResponse * res;
+
 };
 
 #endif // REQUESTMAPPER_H
