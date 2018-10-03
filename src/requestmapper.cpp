@@ -24,6 +24,10 @@ RequestMapper::RequestMapper(QObject* parent)
     matcher.regController("GET;admin/user/edit/(id:num)",
          fnptr<void(UrlParams)>([&](UrlParams p){adminController.userEdit(p.Num("id"));}));
 
+    matcher.regController("GET;/bootstrap/",
+         fnptr<void(UrlParams)>([&](UrlParams){ bootstrapController.service();}));
+
+
 
 }
 
@@ -88,11 +92,9 @@ void RequestMapper::service(HttpRequest& request, HttpResponse& response) {
          else if (path=="/list2") {
              dataTemplateController.service(request, response);
          }
-         else if (path=="/bootstrap") {
-             bootstrapController.service(request, response);
-         }
 
-         else if (path.startsWith("/files")) {
+         else if (path.startsWith("/files" )
+                  || (path.startsWith("/bootstrap"))) {
              staticFileController->service(request,response);
          }
          else {

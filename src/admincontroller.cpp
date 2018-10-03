@@ -21,6 +21,7 @@ void AdminController::service()
 void AdminController::user(int id)
 {
 
+
         QByteArray resp = "its user controller ";
         QString ids = QString::number(id);
         QString now=QTime::currentTime().toString("HH:mm:ss");

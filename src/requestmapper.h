@@ -41,7 +41,7 @@ private:
     CookieTestController cookieTestController;
     DataTemplateController dataTemplateController;
     AdminController adminController = AdminController(&contr);
-    BootstrapTemplateController bootstrapController;
+    BootstrapTemplateController bootstrapController = BootstrapTemplateController(&contr);
     LogOut logoutController;
     UrlMatcher  matcher;
 

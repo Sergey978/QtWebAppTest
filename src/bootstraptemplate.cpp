@@ -2,7 +2,8 @@
 #include "requestmapper.h"
 #include "template.h"
 
-BootstrapTemplateController::BootstrapTemplateController(QObject* parent)
+BootstrapTemplateController::BootstrapTemplateController(Controller * contr ):controller(contr)
+
 {
 
     list.append("Robert");
@@ -15,14 +16,16 @@ BootstrapTemplateController::BootstrapTemplateController(QObject* parent)
     list.append("Jacko");
 }
 
-void BootstrapTemplateController::service(HttpRequest &request, HttpResponse &response)
+void BootstrapTemplateController::service()
 {
-    HttpSession session=RequestMapper::sessionStore->getSession(request,response,false);
+    HttpRequest *request = controller->getHttpRequest();
+    HttpResponse *response = controller->getHttpResponse();
+    HttpSession session=RequestMapper::sessionStore->getSession(*request,*response,false);
     QString username=session.get("username").toString();
-    QByteArray language=request.getHeader("Accept-Language");
+    QByteArray language=request->getHeader("Accept-Language");
     qDebug("language=%s",qPrintable(language));
 
-    response.setHeader("Content-Type", "text/html; charset=UTF-8");
+   // response->setHeader("Content-Type", "text/html; charset=UTF-8");
 
     Template t=RequestMapper::templateCache->getTemplate("experiment",language);
     t.setVariable("name",username);
@@ -34,5 +37,5 @@ void BootstrapTemplateController::service(HttpRequest &request, HttpResponse &re
         t.setVariable("row"+number+".number",number);
         t.setVariable("row"+number+".name",name);
     }
-    response.write(t.toUtf8(),true);
+    response->write(t.toUtf8(),true);
 }

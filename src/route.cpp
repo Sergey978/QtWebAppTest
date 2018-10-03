@@ -110,7 +110,7 @@ void Route::_setRoute(const std::string &route)
     QString _route = QString::fromStdString(route);
 
     _route = extractMethods(_route);
-    splittedRoute = _route.split("/");
+    splittedRoute = _route.split("/", QString::SkipEmptyParts);
 
     QRegExp _rx("\\((\\w+):(\\w+)\\)");
 

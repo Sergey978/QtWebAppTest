@@ -3,16 +3,18 @@
 
 
 #include "httprequesthandler.h"
+#include "controller.h"
 
 using namespace stefanfrings;
 
 
-class BootstrapTemplateController: public HttpRequestHandler {
-    Q_OBJECT
+class BootstrapTemplateController {
+
 public:
-    BootstrapTemplateController(QObject* parent=0);
-    void service(HttpRequest& request, HttpResponse& response);
+    BootstrapTemplateController(Controller * contr);
+    void service();
 private:
+    Controller * controller;
     QList<QString> list;
 };
 
