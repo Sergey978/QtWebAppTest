@@ -25,9 +25,15 @@ void BootstrapTemplateController::service()
     QByteArray language=request->getHeader("Accept-Language");
     qDebug("language=%s",qPrintable(language));
 
-   // response->setHeader("Content-Type", "text/html; charset=UTF-8");
 
-    Template t=RequestMapper::templateCache->getTemplate("experiment",language);
+
+    Template t=RequestMapper::templateLoader->getTemplate("default/layout",language);
+    Template footer = RequestMapper::templateLoader->getTemplate("default/footer");
+    Template header = RequestMapper::templateLoader->getTemplate("default/header");
+    Template navbar = RequestMapper::templateLoader->getTemplate("default/navbar");
+    t.setVariable("footer", footer);
+    t.setVariable("header", header);
+    t.setVariable("navbar", navbar);
     t.setVariable("name",username);
     t.setCondition("logged-in",!username.isEmpty());
     t.loop("row",list.size());

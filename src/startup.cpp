@@ -71,7 +71,7 @@ void Startup::start() {
     // Configure template cache
     QSettings* templateSettings=new QSettings(configFileName,QSettings::IniFormat,app);
     templateSettings->beginGroup("templates");
-    RequestMapper::templateCache=new TemplateCache(templateSettings,app);
+    RequestMapper::templateLoader=new TemplateLoader(templateSettings,app);
 
     // HTTP server
     QSettings* listenerSettings=new QSettings(configFileName,QSettings::IniFormat,app);

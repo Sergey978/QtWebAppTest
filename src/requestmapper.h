@@ -27,7 +27,7 @@ public:
     void service(HttpRequest& request, HttpResponse& response);
     static HttpSessionStore* sessionStore;
     static StaticFileController* staticFileController;
-    static TemplateCache* templateCache;
+    static TemplateLoader* templateLoader;
     static Logger* logger;
 
 

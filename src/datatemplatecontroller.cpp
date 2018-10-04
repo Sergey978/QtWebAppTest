@@ -22,7 +22,7 @@ void DataTemplateController::service(HttpRequest &request, HttpResponse &respons
 
     response.setHeader("Content-Type", "text/html; charset=UTF-8");
 
-    Template t=RequestMapper::templateCache->getTemplate("listdata",language);
+    Template t=RequestMapper::templateLoader->getTemplate("listdata",language);
     t.setVariable("name",username);
     t.setCondition("logged-in",!username.isEmpty());
     t.loop("row",list.size());

@@ -5,7 +5,7 @@
 
 HttpSessionStore* RequestMapper::sessionStore=0;
 StaticFileController* RequestMapper::staticFileController=0;
-TemplateCache* RequestMapper::templateCache=0;
+TemplateLoader* RequestMapper::templateLoader=0;
 Logger* RequestMapper::logger=0;
 
 
