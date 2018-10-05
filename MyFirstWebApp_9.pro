@@ -23,7 +23,9 @@ SOURCES += src/main.cpp \
     src/urlmatcher.cpp \
     src/urlparams.cpp \
     src/route.cpp \
-    src/controller.cpp
+    src/controller.cpp \
+    src/Models/user.cpp \
+    src/Models/dbstorage.cpp
 
 
 
@@ -44,7 +46,9 @@ HEADERS += \
     src/urlparams.h \
     src/fnptr.h \
     src/route.h \
-    src/controller.h
+    src/controller.h \
+    src/Models/user.h \
+    src/Models/dbstorage.h
 
 
 
@@ -57,3 +61,7 @@ include(../QtWebApp/QtWebApp/httpserver/httpserver.pri)
 include(../QtWebApp/QtWebApp/templateengine/templateengine.pri)
 include(../QtWebApp/QtWebApp/logging/logging.pri)
 include(../QtWebApp/QtWebApp/qtservice/qtservice.pri)
+
+
+
+

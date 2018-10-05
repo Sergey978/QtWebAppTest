@@ -6,6 +6,7 @@
 #include "requestmapper.h"
 #include "filelogger.h"
 #include "startup.h"
+#include "Models/dbstorage.h"
 
 /**
  * Search the configuration file.
@@ -77,6 +78,11 @@ void Startup::start() {
     QSettings* listenerSettings=new QSettings(configFileName,QSettings::IniFormat,app);
     listenerSettings->beginGroup("listener");
     listener=new HttpListener(listenerSettings,new RequestMapper(app),app);
+
+    // sqlite_orm ORM Database
+    QSettings* databaseSettings=new QSettings(configFileName,QSettings::IniFormat,app);
+    databaseSettings->beginGroup("database");
+    storage=new HttpListener(listenerSettings,new RequestMapper(app),app);
 }
 
 void Startup::stop() {
