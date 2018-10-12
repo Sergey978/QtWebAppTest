@@ -2,18 +2,22 @@
 #include "requestmapper.h"
 #include "template.h"
 
+#include <cassert>
+#include <iostream>
+#include <vector>
+
+
+
 BootstrapTemplateController::BootstrapTemplateController(Controller * contr ):controller(contr)
 
 {
 
-    list.append("Robert");
-    list.append("Lisa");
-    list.append("Hannah");
-    list.append("Ludwig");
-    list.append("Miranda");
-    list.append("Fracesco");
-    list.append("Kim");
-    list.append("Jacko");
+        config.path_to_database = "e:/SQLite/sqlite-test.db";
+        config.flags = SQLITE_OPEN_READWRITE | SQLITE_OPEN_CREATE;
+        config.debug = false;
+
+
+
 }
 
 void BootstrapTemplateController::service()
@@ -24,6 +28,13 @@ void BootstrapTemplateController::service()
     QString username=session.get("username").toString();
     QByteArray language=request->getHeader("Accept-Language");
     qDebug("language=%s",qPrintable(language));
+
+     sql::connection db(config);
+
+
+    auto sj =  db(select(user.id, user.name, role.roleName)
+                .from(user.join(userRoles).on(user.id == userRoles.userId)
+                .join(role).on(userRoles.RoleId == role.id)).unconditionally());
 
 
 
@@ -36,12 +47,21 @@ void BootstrapTemplateController::service()
     t.setVariable("navbar", navbar);
     t.setVariable("name",username);
     t.setCondition("logged-in",!username.isEmpty());
-    t.loop("row",list.size());
-    for(int i=0; i<list.size(); i++) {
-        QString number=QString::number(i);
-        QString name=list.at(i);
-        t.setVariable("row"+number+".number",number);
-        t.setVariable("row"+number+".name",name);
-    }
+
+
+    int rowCount = 2;
+
+    int i = 0;
+    t.loop("row",50);
+    for (const auto& row :  sj )
+         {
+            QString rowNumb = QString::number(i);
+             t.setVariable("row" + rowNumb + ".id",QString::number(row.id));
+             t.setVariable("row"+rowNumb+".name",QString::fromStdString( row.name));
+             t.setVariable("row"+rowNumb+".roleName", QString::fromStdString(row.roleName));
+             i++;
+         }
+
+    t.loop("row",4);
     response->write(t.toUtf8(),true);
 }

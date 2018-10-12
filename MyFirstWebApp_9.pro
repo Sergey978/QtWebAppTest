@@ -18,14 +18,13 @@ SOURCES += src/main.cpp \
     src/startup.cpp \
     src/admincontroller.cpp \   
     src/logout.cpp \
-    src/sqlite/sqlite3.c \
     src/bootstraptemplate.cpp \
     src/urlmatcher.cpp \
     src/urlparams.cpp \
     src/route.cpp \
     src/controller.cpp \
-    src/Models/user.cpp \
-    src/Models/dbstorage.cpp
+    src/DomainModels/user.cpp \
+    src/DomainModels/dbstorage.cpp
 
 
 
@@ -47,8 +46,9 @@ HEADERS += \
     src/fnptr.h \
     src/route.h \
     src/controller.h \
-    src/Models/user.h \
-    src/Models/dbstorage.h
+    src/DomainModels/user.h \
+    src/DomainModels/dbstorage.h \
+    src/DomainModels/SqlRepository/sqlite-test.h
 
 
 
@@ -61,6 +61,8 @@ include(../QtWebApp/QtWebApp/httpserver/httpserver.pri)
 include(../QtWebApp/QtWebApp/templateengine/templateengine.pri)
 include(../QtWebApp/QtWebApp/logging/logging.pri)
 include(../QtWebApp/QtWebApp/qtservice/qtservice.pri)
+include(../QtWebApp/SQLpp11/sqlpp-scliteconnector-lib.pri)
+
 
 
 

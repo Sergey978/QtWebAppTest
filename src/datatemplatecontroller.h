@@ -2,15 +2,17 @@
 #define DATATEMPLATECONTROLLER_H
 
 #include "httprequesthandler.h"
+#include "controller.h"
 
 using namespace stefanfrings;
 
-class DataTemplateController: public HttpRequestHandler {
-    Q_OBJECT
+class DataTemplateController {
+
 public:
-    DataTemplateController(QObject* parent=0);
-    void service(HttpRequest& request, HttpResponse& response);
+    DataTemplateController(Controller * contr);
+    void service();
 private:
+    Controller * controller;
     QList<QString> list;
 };
 

@@ -27,6 +27,9 @@ RequestMapper::RequestMapper(QObject* parent)
     matcher.regController("GET;/bootstrap/",
          fnptr<void(UrlParams)>([&](UrlParams){ bootstrapController.service();}));
 
+    matcher.regController("GET;/datetemplate/",
+          fnptr<void(UrlParams)>([&](UrlParams){ templateController.service();}));
+
 
 
 }
@@ -90,7 +93,7 @@ void RequestMapper::service(HttpRequest& request, HttpResponse& response) {
              cookieTestController.service(request, response);
          }
          else if (path=="/list2") {
-             dataTemplateController.service(request, response);
+             templateController.service();
          }
 
          else if (path.startsWith("/files" )

@@ -40,7 +40,7 @@ private:
     ListDataController listDataController;
     LoginController loginController;
     CookieTestController cookieTestController;
-    DataTemplateController dataTemplateController;
+    DataTemplateController  templateController =  DataTemplateController(&contr) ;
     AdminController adminController = AdminController(&contr);
     BootstrapTemplateController bootstrapController = BootstrapTemplateController(&contr);
     LogOut logoutController;
