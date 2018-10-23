@@ -6,19 +6,6 @@
 #include "controller.h"
 
 
-#ifdef SQLPP_USE_SQLCIPHER
-#include <sqlcipher/sqlite3.h>
-#else
-#include <sqlite3/sqlite3.h>
-#endif
-
-#include <sqlpp11/custom_query.h>
-#include <sqlpp11/sqlite3/sqlite3.h>
-#include <sqlpp11/sqlpp11.h>
-
-using namespace stefanfrings;
-namespace sql = sqlpp::sqlite3;
-
 class BootstrapTemplateController {
 
 public:
@@ -26,12 +13,7 @@ public:
     void service();
 private:
     Controller * controller;
-    QList<QString> list;
-
-    sqlRepo::User user;
-    sqlRepo::Role role;
-    sqlRepo::UserRoles userRoles;
-    sql::connection_config config;
+    QList<QString> list;    
 };
 
 #endif // BOOTSTRAPTEMPLATE_H

@@ -6,6 +6,8 @@
 #include "requestmapper.h"
 #include "filelogger.h"
 #include "startup.h"
+#include "DomainModels/SqlRepository/dbconfig.h"
+
 
 
 /**
@@ -78,6 +80,15 @@ void Startup::start() {
     QSettings* listenerSettings=new QSettings(configFileName,QSettings::IniFormat,app);
     listenerSettings->beginGroup("listener");
     listener=new HttpListener(listenerSettings,new RequestMapper(app),app);
+
+    //SQLPP database
+    QSettings* dBSettings=new QSettings(configFileName,QSettings::IniFormat,app);
+    dBSettings->beginGroup("database");
+        DbConfig::setConfig(dBSettings->value("user").toString().toStdString()
+                              , dBSettings->value("database").toString().toStdString()
+                              ,dBSettings->value("debug").toBool() );
+
+
 
 
 }

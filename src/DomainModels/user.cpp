@@ -1,7 +1,8 @@
 #include "user.h"
 
-User::User(int id, std::string userName ):
-    id(id),userName(userName)
+
+
+User::User(int id, std::string userName):id(id),userName(userName)
 {
 
 }
@@ -15,3 +16,9 @@ std::string User::getUserName() const
 {
     return userName;
 }
+
+std::vector<Role> User::getRoles() const
+{
+    return roles;
+}
+

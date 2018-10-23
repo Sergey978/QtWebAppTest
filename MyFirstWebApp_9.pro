@@ -24,7 +24,12 @@ SOURCES += src/main.cpp \
     src/route.cpp \
     src/controller.cpp \
     src/DomainModels/user.cpp \
-    src/DomainModels/dbstorage.cpp
+    src/DomainModels/role.cpp \
+    src/DomainModels/userrole.cpp \
+    src/DomainModels/SqlRepository/userrepo.cpp \
+    src/DomainModels/SqlRepository/dbcontext.cpp \
+    src/DomainModels/SqlRepository/dbconfig.cpp \
+    src/DomainModels/SqlRepository/rolerepo.cpp
 
 
 
@@ -47,8 +52,13 @@ HEADERS += \
     src/route.h \
     src/controller.h \
     src/DomainModels/user.h \
-    src/DomainModels/dbstorage.h \
-    src/DomainModels/SqlRepository/sqlite-test.h
+    src/DomainModels/SqlRepository/sqlite-test.h \
+    src/DomainModels/role.h \
+    src/DomainModels/userrole.h \
+    src/DomainModels/SqlRepository/dbcontext.h \
+    src/DomainModels/SqlRepository/userrepo.h \
+    src/DomainModels/SqlRepository/dbconfig.h \
+    src/DomainModels/SqlRepository/rolerepo.h
 
 
 
@@ -61,7 +71,7 @@ include(../QtWebApp/QtWebApp/httpserver/httpserver.pri)
 include(../QtWebApp/QtWebApp/templateengine/templateengine.pri)
 include(../QtWebApp/QtWebApp/logging/logging.pri)
 include(../QtWebApp/QtWebApp/qtservice/qtservice.pri)
-include(../QtWebApp/SQLpp11/sqlpp-scliteconnector-lib.pri)
+include(../QtWebApp/SQLpp11/sqlpp11-mysql-connector-lib.pri)
 
 
 

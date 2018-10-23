@@ -5,17 +5,15 @@
 #include <cassert>
 #include <iostream>
 #include <vector>
+#include"DomainModels/SqlRepository/userrepo.h"
+#include"DomainModels/user.h"
 
 
 
-BootstrapTemplateController::BootstrapTemplateController(Controller * contr ):controller(contr)
+BootstrapTemplateController::BootstrapTemplateController(Controller * contr )
+    :controller(contr)
 
 {
-
-        config.path_to_database = "e:/SQLite/sqlite-test.db";
-        config.flags = SQLITE_OPEN_READWRITE | SQLITE_OPEN_CREATE;
-        config.debug = false;
-
 
 
 }
@@ -28,13 +26,6 @@ void BootstrapTemplateController::service()
     QString username=session.get("username").toString();
     QByteArray language=request->getHeader("Accept-Language");
     qDebug("language=%s",qPrintable(language));
-
-     sql::connection db(config);
-
-
-    auto sj =  db(select(user.id, user.name, role.roleName)
-                .from(user.join(userRoles).on(user.id == userRoles.userId)
-                .join(role).on(userRoles.RoleId == role.id)).unconditionally());
 
 
 
@@ -49,19 +40,19 @@ void BootstrapTemplateController::service()
     t.setCondition("logged-in",!username.isEmpty());
 
 
-    int rowCount = 2;
+    UserRepo ur;
+    std::vector<User> users = ur.getUsers();
 
+    t.loop("row",users.size());
     int i = 0;
-    t.loop("row",50);
-    for (const auto& row :  sj )
+    for (const auto& row : users )
          {
             QString rowNumb = QString::number(i);
-             t.setVariable("row" + rowNumb + ".id",QString::number(row.id));
-             t.setVariable("row"+rowNumb+".name",QString::fromStdString( row.name));
-             t.setVariable("row"+rowNumb+".roleName", QString::fromStdString(row.roleName));
+             t.setVariable("row" + rowNumb + ".id",QString::number(row.getId()));
+             t.setVariable("row"+rowNumb+".name",QString::fromStdString( row.getUserName()));
+            // t.setVariable("row"+rowNumb+".roleName", QString::fromStdString(row.roleName));
              i++;
          }
 
-    t.loop("row",4);
     response->write(t.toUtf8(),true);
 }
