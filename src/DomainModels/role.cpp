@@ -11,7 +11,7 @@ int Role::getId()
     return id;
 }
 
-std::string Role::getRoleName()
+std::string Role::getRoleName() const
 {
     return  roleName;
 }

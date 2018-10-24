@@ -1,8 +1,15 @@
 #include "user.h"
+#include "SqlRepository/rolerepo.h"
 
 
 
 User::User(int id, std::string userName):id(id),userName(userName)
+{
+
+}
+
+User::User(int id, std::string userName, std::vector<Role> &roles)
+    :id(id), userName(userName),roles(roles)
 {
 
 }
@@ -19,6 +26,8 @@ std::string User::getUserName() const
 
 std::vector<Role> User::getRoles() const
 {
+
     return roles;
+
 }
 

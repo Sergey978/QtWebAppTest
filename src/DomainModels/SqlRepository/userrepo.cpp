@@ -13,7 +13,18 @@ std::vector<User> UserRepo::getUsers()
     users.clear();
     for (auto const &user : sj)
     {
-        users.push_back(User(user.id, user.name));
+        //select roles for each user
+        auto  sr =  dbc(select(role_.id,  role_.roleName)
+                            .from(role_.join(userRoles_)
+                            .on(role_.id == userRoles_.RoleId and userRoles_.userId == user.id))
+                            .unconditionally());
+        roles.clear();
+         for (auto const &role : sr)
+         {
+             roles.push_back(Role(role.id, role.roleName));
+         }
+
+        users.push_back(User(user.id, user.name, roles));
     }
     return users;
 }

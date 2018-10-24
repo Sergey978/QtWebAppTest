@@ -14,8 +14,8 @@ class Role
 public:
     Role(int id, std::string roleName);
     int getId();
-    std::string getRoleName();
-    std::vector<User> getUsers() const;
+    std::string getRoleName() const;
+    std::vector<User> getUsers() ;
 };
 
 #endif // ROLE_H

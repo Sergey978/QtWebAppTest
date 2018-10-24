@@ -20,10 +20,13 @@ std::vector<Role> RoleRepo::getRoles()
 
 std::vector<Role> RoleRepo::getUserRoles(int userId)
 {
+
     DbContext dbc(DbConfig::conf);
- //   auto sj = dbc(select(role_.id,role_.roleName).from(role_));
-    auto sj =  dbc(select(role_.id,  role_.roleName)
-                  .from(role_.join(userRoles_).on(role_.id == userRoles_.RoleId).unconditionally());
+    auto sj =  dbc.run(select(role_.id,  role_.roleName)
+                   .from(role_.join(userRoles_)
+                         .on(role_.id == userRoles_.RoleId and userRoles_.userId == userId))
+                   .unconditionally());
+
 
     roles_.clear();
     for (auto const &role : sj)

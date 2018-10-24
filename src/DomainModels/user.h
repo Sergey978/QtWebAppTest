@@ -9,13 +9,15 @@ class User
 {
    int id;
    std::string userName;
-   std::vector<Role> roles;  
+   std::vector<Role> roles;
 
 public:
     User(int id, std::string userName);
+    User(int id, std::string userNamr, std::vector<Role> &roles);
     int getId() const;
-    std::string getUserName() const;
-    std::vector<Role> getRoles() const;   
+    void setRoles(std::vector<Role> roles);
+    std::string getUserName() const ;
+    std::vector<Role> getRoles() const ;
 };
 
 #endif // USER_H

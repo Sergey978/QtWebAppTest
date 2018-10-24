@@ -20,8 +20,12 @@ public:
     bool updateUser(User &instance);
     bool removeUser(int userId);
 private:
-    std::vector<User> users;    
+    std::vector<User> users;
+    std::vector<Role> roles;
     sqlRepo::User user_;
+    sqlRepo::Role role_;
+    sqlRepo::UserRoles userRoles_;
+
 
 };
 

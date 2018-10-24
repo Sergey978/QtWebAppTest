@@ -41,18 +41,31 @@ void BootstrapTemplateController::service()
 
 
     UserRepo ur;
+    std::vector<Role> roles;
     std::vector<User> users = ur.getUsers();
+    QString roleList = "";
 
     t.loop("row",users.size());
     int i = 0;
     for (const auto& row : users )
-         {
-            QString rowNumb = QString::number(i);
-             t.setVariable("row" + rowNumb + ".id",QString::number(row.getId()));
-             t.setVariable("row"+rowNumb+".name",QString::fromStdString( row.getUserName()));
-            // t.setVariable("row"+rowNumb+".roleName", QString::fromStdString(row.roleName));
-             i++;
-         }
+    {
+        QString rowNumb = QString::number(i);
+
+        t.setVariable("row" + rowNumb + ".id", QString::number(row.getId()));
+        t.setVariable("row" + rowNumb + ".name", QString::fromStdString( row.getUserName()));
+
+        roles = row.getRoles();
+        roleList.clear();
+        for (const Role &role : roles)
+        {
+            roleList.append(QString::fromStdString( role.getRoleName()));
+            roleList.append(" ");
+        }
+        t.setVariable("row" + rowNumb + ".roles" , roleList);
+
+        i++;
+    }
 
     response->write(t.toUtf8(),true);
+
 }

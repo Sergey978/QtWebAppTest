@@ -18,8 +18,8 @@ public:
     std::vector<Role>  getRoles();
     std::vector<Role> getUserRoles(int userId);
     bool createRole(Role &instance);
-    bool updateUser(Role &instance);
-    bool removeUser(int rolerId);
+    bool updateRole(Role &instance);
+    bool removeRole(int rolerId);
 private:
     std::vector<Role> roles_;
     sqlRepo::Role role_;
