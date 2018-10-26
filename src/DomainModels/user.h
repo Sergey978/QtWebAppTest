@@ -4,6 +4,10 @@
 #include<vector>
 #include "role.h"
 
+#include"SqlRepository/sqlrepository.h"
+
+
+
 
 class User
 {
@@ -11,13 +15,13 @@ class User
    std::string userName;
    std::vector<Role> roles;
 
-public:
+public:   
     User(int id, std::string userName);
     User(int id, std::string userNamr, std::vector<Role> &roles);
     int getId() const;
     void setRoles(std::vector<Role> roles);
     std::string getUserName() const ;
-    std::vector<Role> getRoles() const ;
+    std::vector<Role> getRoles( );
 };
 
 #endif // USER_H

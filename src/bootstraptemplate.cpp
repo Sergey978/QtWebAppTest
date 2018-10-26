@@ -5,9 +5,8 @@
 #include <cassert>
 #include <iostream>
 #include <vector>
-#include"DomainModels/SqlRepository/userrepo.h"
+#include"DomainModels/SqlRepository/sqlrepository.h"
 #include"DomainModels/user.h"
-
 
 
 BootstrapTemplateController::BootstrapTemplateController(Controller * contr )
@@ -27,8 +26,6 @@ void BootstrapTemplateController::service()
     QByteArray language=request->getHeader("Accept-Language");
     qDebug("language=%s",qPrintable(language));
 
-
-
     Template t=RequestMapper::templateLoader->getTemplate("default/layout",language);
     Template footer = RequestMapper::templateLoader->getTemplate("default/footer");
     Template header = RequestMapper::templateLoader->getTemplate("default/header");
@@ -40,14 +37,14 @@ void BootstrapTemplateController::service()
     t.setCondition("logged-in",!username.isEmpty());
 
 
-    UserRepo ur;
+    SqlRepository ur;
     std::vector<Role> roles;
     std::vector<User> users = ur.getUsers();
     QString roleList = "";
 
     t.loop("row",users.size());
     int i = 0;
-    for (const auto& row : users )
+    for ( User & row : users )
     {
         QString rowNumb = QString::number(i);
 

@@ -26,10 +26,8 @@ SOURCES += src/main.cpp \
     src/DomainModels/user.cpp \
     src/DomainModels/role.cpp \
     src/DomainModels/userrole.cpp \
-    src/DomainModels/SqlRepository/userrepo.cpp \
-    src/DomainModels/SqlRepository/dbcontext.cpp \
     src/DomainModels/SqlRepository/dbconfig.cpp \
-    src/DomainModels/SqlRepository/rolerepo.cpp
+    src/DomainModels/SqlRepository/sqlrepository.cpp
 
 
 
@@ -55,10 +53,9 @@ HEADERS += \
     src/DomainModels/SqlRepository/sqlite-test.h \
     src/DomainModels/role.h \
     src/DomainModels/userrole.h \
-    src/DomainModels/SqlRepository/dbcontext.h \
-    src/DomainModels/SqlRepository/userrepo.h \
     src/DomainModels/SqlRepository/dbconfig.h \
-    src/DomainModels/SqlRepository/rolerepo.h
+    src/DomainModels/SqlRepository/sqlrepository.h \
+    src/DomainModels/SqlRepository/dbcontext.h
 
 
 

@@ -3,6 +3,7 @@
 #include "httprequesthandler.h"
 
 
+
 using namespace stefanfrings;
 
 class Controller : public HttpRequestHandler
@@ -16,6 +17,8 @@ public:
     void setHttpRequest( HttpRequest & req);
     void setHttpResponse( HttpResponse & resp);
     void setReqResp(HttpRequest &req, HttpResponse &resp);
+
+
 
 
 private:
